@@ -1,12 +1,10 @@
-                   ;Print Function  
-
- print macro p1
+;Print Function  
+print macro p1
 mov dl,p1   
 mov ah,02
 int 21h  
- endm     
-        ;Output Function  
-
+endm     
+;Output Function  
 Output macro p1
 mov dx,offset p1   
 mov ah,09
@@ -21,7 +19,6 @@ endm
  str db 100 dup("$")
  x db "Enter Your Text==> $" 
  x2 db "Enter Counter==> $" 
-
  num db 0          
  newline db 0AH,0DH,"$"
 .code  
