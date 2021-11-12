@@ -1,7 +1,4 @@
-; Ask User What to Print
-; Ask User For number of lines to print
-; print each statement on a new line  
-                  ;Print Function  
+                   ;Print Function  
 
  print macro p1
 mov dl,p1   
