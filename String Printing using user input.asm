@@ -31,8 +31,7 @@ mov ds, ax
 
 output x  
 
-
-;offset addres of first element in array          
+;offset address of first element in array          
 mov si, offset str  
 
         
@@ -64,7 +63,6 @@ mov ah ,1
 int 21h   
 ; save input value to counter 
 mov counter ,al  
-
 mov [si] , offset counter
 mov cx , [si]
 
@@ -73,23 +71,18 @@ Output newLine
 lea dx, str 
 mov ah,09
 int 21h 
- 
 inc num
 mov bl,num 
 add bl,48
 cmp bl,counter  
 je End
-
-
 loop L1
-  
-  End:
+End:
 ;return statement  
 mov ah,4ch
 int 21h     
 
 output newline
-
 
 main endp
 end main
