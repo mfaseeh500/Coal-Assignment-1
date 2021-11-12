@@ -21,9 +21,10 @@ endm
 .data 
  
  counter db ?
- str db 100 dup(?)
- x db "Enter String/Text To Print$" 
- x2 db "Enter Counter for How many Lines To Print$" 
+ str db 100 dup("$")
+ x db "Enter Your Text==> $" 
+ x2 db "Enter Counter==> $" 
+
  num db 0          
  newline db 0AH,0DH,"$"
 .code  
@@ -35,7 +36,7 @@ mov ds, ax
 
 
 output x  
-output newline
+
 
 ;offset addres of first element in array          
 mov si, offset str  
@@ -59,11 +60,11 @@ jmp takingInputString
     
     
 InputStringEnd: 
-;new line 
+ 
 output newline
 output x2 
-;new line
-output newLine
+
+
 ; taking input counter 
 mov ah ,1
 int 21h   
@@ -73,11 +74,12 @@ mov counter ,al
 mov [si] , offset counter
 mov cx , [si]
 
-Loop:
+L1:
 Output newLine
 lea dx, str 
 mov ah,09
 int 21h 
+ 
 inc num
 mov bl,num 
 add bl,48
@@ -85,7 +87,7 @@ cmp bl,counter
 je End
 
 
-loop Loop
+loop L1
   
   End:
 ;return statement  
