@@ -75,7 +75,9 @@ mov cx , [si]
 
 Loop:
 Output newLine
-Print str 
+lea dx, str 
+mov ah,09
+int 21h 
 inc num
 mov bl,num 
 add bl,48
@@ -85,7 +87,7 @@ je End
 
 loop Loop
   
-  
+  End:
 ;return statement  
 mov ah,4ch
 int 21h     
