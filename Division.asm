@@ -1,12 +1,12 @@
                  ;Print Function  
-;x---------------------------------------------x 
+
  print macro p1
 mov dl,p1   
 mov ah,02
 int 21h  
  endm     
         ;Output Function  
-;x---------------------------------------------x
+
 Output macro p1
 mov dx,offset p1   
 mov ah,09
@@ -19,12 +19,12 @@ endm
 .stack 100h
 
 .data 
-         dividend db "ENTER FIRST VALUE (DIVIDEND)-----> $"
-         divisor db ,0ah,0ah, "ENTER SECOND VALUE (DIVISOR)-----> $"
-        msg db ,0ah,0ah,"REMAINDER (R)-----> $"
-        var db ,0ah,0ah,"QUOTIENT (Q)-----> $" 
-        var1 db  ,0ah,0ah, "FINAL RESULT-----> $" 
-        var2 db   ,0ah,0ah, "x--------------------------END-----------------------------x $"
+         dividend db "ENTER FIRST VALUE (DIVIDEND)==> $"
+         divisor db ,0ah,0ah, "ENTER SECOND VALUE (DIVISOR)==> $"
+        msg db ,0ah,0ah,"REMAINDER (R)==> $"
+        var db ,0ah,0ah,"QUOTIENT (Q)==> $" 
+        var1 db  ,0ah,0ah, "FINAL RESULT==> $" 
+        
         newLine db 0ah,0dh,"$" 
 .code
 main proc                  ;HOW TO TAKE INPUT FORM USER AND HOW TO DO DIVISION
