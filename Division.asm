@@ -1,13 +1,31 @@
+                 ;Print Function  
+;x---------------------------------------------x 
+ print macro p1
+mov dl,p1   
+mov ah,02
+int 21h  
+ endm     
+        ;Output Function  
+;x---------------------------------------------x
+Output macro p1
+mov dx,offset p1   
+mov ah,09
+int 21h  
+endm 
+
+
+
 .model small
 .stack 100h
 
 .data 
-         msg1 db "ENTER FIRST VALUE (DIVIDEND)-----> $"
-         msg2 db ,0ah,0ah, "ENTER SECOND VALUE (DIVISOR)-----> $"
+         dividend db "ENTER FIRST VALUE (DIVIDEND)-----> $"
+         divisor db ,0ah,0ah, "ENTER SECOND VALUE (DIVISOR)-----> $"
         msg db ,0ah,0ah,"REMAINDER (R)-----> $"
         var db ,0ah,0ah,"QUOTIENT (Q)-----> $" 
         var1 db  ,0ah,0ah, "FINAL RESULT-----> $" 
-        var2 db   ,0ah,0ah, "x--------------------------END-----------------------------x $" 
+        var2 db   ,0ah,0ah, "x--------------------------END-----------------------------x $"
+        newLine db 0ah,0dh,"$" 
 .code
 main proc                  ;HOW TO TAKE INPUT FORM USER AND HOW TO DO DIVISION
                          ;X----------------------------------------------------X 
@@ -16,12 +34,7 @@ mov ax,@data
 mov ds,ax
                                 ;(DIVIDEND)
                               ;X------------X 
-                              
-         ;PRINTING MESSAGE
-               
-         mov dx,offset msg1
-         mov ah,09h 
-         int 21H
+Output dividend
          
          
          
@@ -29,21 +42,12 @@ mov ds,ax
      ;X------------------X
           mov ah,01h
           int 21h
-                     ;LOGIC
-                  ;X----------X 
                    mov cl,al
                    xor ch,ch
                    sub cx,48
                
-       ; NEW LINE
-     ;X------------X  
-       mov dl,10
-       mov ah,02h
-       int 21h
-     
-       mov dl,13
-       mov ah,02h
-       int 21h
+        
+      Output newline
        
  
                            
@@ -52,9 +56,7 @@ mov ds,ax
                                    ;X---------X 
  ; PRINTING MESSAGE
  
-mov dx,offset msg2
-mov ah,09h 
-int 21h 
+Output divisor  
            
            ; INPUT 2 FROM USER
           ;X------------------X
@@ -69,13 +71,7 @@ int 21h
                     
        ; NEW LINE
      ;X------------X 
-        mov dl,10
-        mov ah,02h
-        int 21h
-     
-        mov dl,13
-        mov ah,02h
-        int 21h
+        Output newline
 
 
             ;(DIVISION LOGIC)
@@ -97,9 +93,8 @@ int 21h
                           
   ; PRINTING MESSAGE
  
-       mov dx,offset var1
-       mov ah,09h 
-       int 21h 
+       Output var1 
+      
  
                ;LOGIC
             ;X--------X
@@ -107,18 +102,7 @@ int 21h
              add dl,48
              mov ah,02h
              int 21h 
-             
-             
-                  ;DECIMAL POINT(.)
-                ;X-----------------X
-   
-                     mov dl,"."
-                     mov ah , 02
-                     int 21h
-            
-         ;LOGIC
-       ;X--------X 
-           
+            print "."   
          mov dl,ch
          add dl,48
         mov ah,02h
@@ -127,13 +111,7 @@ int 21h
         ; NEW LINE
      ;X------------X  
      
-        mov dl,10
-        mov ah,02h
-        int 21h
-     
-        mov dl,13
-        mov ah,02h
-        int 21h
+        Output newline
      
          
             ;REMIANDER LOGIC(R)
@@ -142,9 +120,7 @@ int 21h
          
 ; PRINTING MESSAGE
              
-mov dx,offset msg
-mov ah,09h 
-int 21h 
+Output msg 
           
              ;LOGIC
           ;X---------X 
@@ -154,26 +130,15 @@ int 21h
           mov ah,02h
           int 21h 
    
-       ; NEW LINE
-     ;X------------X 
    
-       mov dl,10
-       mov ah,02h
-       int 21h
-   
-       mov dl,13
-       mov ah,02h
-       int 21h  
+      Output newline 
    
    ;QUOTIENT LOGIC (Q)
  ;X--------------------X  
  
 
 ; PRINTING MESSAGE    
-mov dx,offset var
-mov ah,09h 
- int 21h
-   
+Output var
              ;LOGIC
           ;X---------X
           
@@ -181,26 +146,11 @@ mov ah,09h
            add dl,48
            mov ah,02h
            int 21h 
+
+    
  
-   ; NEW LINE
-;X------------X 
-         
-    mov dl,10
-    mov ah,02h
-    int 21h
-     
-    mov dl,13
-    mov ah,02h
-    int 21h
+mov ah,4ch
+int 21h 
     
- ; PRINTING MESSAGE
-               
-     mov dx,offset VAR2
-     mov ah,09h 
-     int 21H
-         
-    
-    
-    main endp
+main endp
 end main
-ret
